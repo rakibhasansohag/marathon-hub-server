@@ -8,7 +8,9 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 // Initialize Firebase Admin
-const serviceAccount = require('./firebase-config.json');
+const decoded = Buffer.from(process.env.FIREBASE_KEY, 'base64').toString();
+const serviceAccount = JSON.parse(decoded);
+
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 });
@@ -51,7 +53,7 @@ async function verifyFirebaseToken(req, res, next) {
 
 async function run() {
 	try {
-		await client.connect();
+		// await client.connect();
 		// Point: Collections
 		const MarathonsUserCollections = client
 			.db('marathonBD')
@@ -64,10 +66,10 @@ async function run() {
 			.collection('marathonRegistrations');
 
 		// Send a ping to confirm a successful connection
-		await client.db('admin').command({ ping: 1 });
-		console.log(
-			'Pinged your deployment. You successfully connected to MongoDB!',
-		);
+		// await client.db('admin').command({ ping: 1 });
+		// console.log(
+		// 	'Pinged your deployment. You successfully connected to MongoDB!',
+		// );
 
 		// Point — Marathon Users CRUD —
 		// Create a User
