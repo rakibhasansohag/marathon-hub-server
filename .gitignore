@@ -1,0 +1,6 @@
+__text_for _future
+open.bat
+node_modules
+dist
+.env
+firebase-config.json
