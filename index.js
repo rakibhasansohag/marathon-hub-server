@@ -480,5 +480,5 @@ async function run() {
 run().catch(console.dir);
 
 app.listen(port, () => {
-	console.log(`Garden Hub server is running on port: ${port}`);
+	console.log(`Marathon Hub server is running on port: ${port}`);
 });
