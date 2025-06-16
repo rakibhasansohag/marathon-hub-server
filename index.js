@@ -22,6 +22,8 @@ app.use(
 			'http://localhost:3000',
 			'http://localhost:5173',
 			'https://marathono-managemetn-system.vercel.app',
+			'https://marathon-managment-by-rakib.netlify.app',
+			'marathon-managment-by-rakib.surgh.sh',
 		],
 		credentials: true,
 	}),
