@@ -18,10 +18,15 @@ admin.initializeApp({
 // Point : Middleware
 app.use(
 	cors({
-		origin: ['http://localhost:3000', 'http://localhost:5173'],
+		origin: [
+			'http://localhost:3000',
+			'http://localhost:5173',
+			'https://marathono-managemetn-system.vercel.app',
+		],
 		credentials: true,
 	}),
 );
+
 app.use(express.json());
 
 app.get('/', (req, res) => res.send('🌿 Marathon Hub Server is up!'));
