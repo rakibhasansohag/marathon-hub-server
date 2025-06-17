@@ -16,18 +16,30 @@ admin.initializeApp({
 });
 
 // Point : Middleware
-app.use(
-	cors({
-		origin: [
-			'http://localhost:3000',
-			'http://localhost:5173',
-			'https://marathono-managemetn-system.vercel.app',
-			'https://marathon-managment-by-rakib.netlify.app',
-			'http://marathon-managment-by-rakib.surgh.sh',
-		],
-		credentials: true,
-	}),
-);
+const allowedOrigins = [
+	'http://localhost:3000',
+	'http://localhost:5173',
+	'https://marathono-managemetn-system.vercel.app',
+	'https://marathon-managment-by-rakib.netlify.app',
+	'http://marathon-managment-by-rakib.surge.sh', //
+];
+
+app.use((req, res, next) => {
+	const origin = req.headers.origin;
+	if (allowedOrigins.includes(origin) || !origin) {
+		res.header('Access-Control-Allow-Origin', origin || '*');
+		res.header('Access-Control-Allow-Credentials', 'true');
+		res.header(
+			'Access-Control-Allow-Methods',
+			'GET, POST, PUT, DELETE, OPTIONS',
+		);
+		res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+	}
+	if (req.method === 'OPTIONS') {
+		return res.status(200).send();
+	}
+	next();
+});
 
 app.use(express.json());
 
