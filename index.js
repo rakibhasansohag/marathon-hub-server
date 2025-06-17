@@ -72,7 +72,7 @@ async function verifyFirebaseToken(req, res, next) {
 
 async function run() {
 	try {
-		await client.connect();
+		// await client.connect();
 		// Point: Collections
 		const MarathonsUserCollections = client
 			.db('marathonBD')
